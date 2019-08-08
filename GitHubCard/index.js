@@ -6,11 +6,10 @@
 https://api.github.com/users/djones36
 
 axios.get('https://api.github.com/users/djones36')
-  .then(element => {
-    console.log('data ', element)
-    let myData = element.data;
-    console.log('User Info' ,myData)
-    return myData;
+  .then(data => {
+    console.log('User Info' ,data)
+    const cards = document.querySelector('.cards')
+    cards.appendChild(grandCardCreator(data.data));
   })
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
@@ -59,7 +58,7 @@ let cards = document.querySelector('.cards')
 
 function grandCardCreator(element){
   //created classes
-  let card = document.createElement('div');
+  let divParent = document.createElement('div');
   let img = document.createElement('img');
   let cardInfo = document.createElement('div');
   let name = document.createElement('h3');
@@ -71,13 +70,12 @@ function grandCardCreator(element){
   let following = document.createElement('p');
   let bio = document.createElement('p');
   //create class
-  card.classList('card');
-  cardInfo.classList('card-info');
+  divParent.classList.add('card');
   name.classList.add('name');
-  userName.classList(userName);
+  userName.classList.add('userName');
   //append child
-  card.appendChild(img);
-  card.appendChild(cardInfo);
+  divParent.appendChild(img);
+  divParent.appendChild(cardInfo);
   cardInfo.appendChild(userName);
   cardInfo.appendChild(location);
   cardInfo.appendChild(profile);
@@ -86,19 +84,18 @@ function grandCardCreator(element){
   cardInfo.appendChild(following);
   cardInfo.appendChild(bio);
   //textcontent
-  location.textContent = element.location
-  name.textContent = element.name
-  img.src = element.avatar_url
-  userName.textContent = element.login
-  const profileLink = element.avatar_url
-  profileAtag.innerHTML = profileLink.link(element.url)
-  followers.textContent = element.followers
-  following.textContent = element.following
-  bio.textContent = element.bio
+  location.textContent = element.location;
+  name.textContent = element.name;
+  img.src = element.avatar_url;
+  userName.textContent = element.login;
+  const profileLink = element.avatar_url;
+  profileAtag.innerHTML = profileLink.link(element.url);
+  followers.textContent = `Followers: ${element.followers}`;
+  following.textContent = element.following;
+  bio.textContent = element.bio;
 
-  return card;
+  return divParent;
 }
-cards.appendChild(grandCardCreator(myData))
 
 /* List of LS Instructors Github username's: 
   tetondan
