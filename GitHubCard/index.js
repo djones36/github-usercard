@@ -69,7 +69,8 @@ function grandCardCreator(){
   let followers = document.createElement('p');
   let locatifolowingon = document.createElement('p');
   let bio = document.createElement('p');
-  //create 
+  //create class
+  card.classList('card')
 }
 /* List of LS Instructors Github username's: 
   tetondan
