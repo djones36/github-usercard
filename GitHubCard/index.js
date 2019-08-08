@@ -34,6 +34,23 @@ axios.get('https://api.github.com/users/djones36')
 */
 
 const followersArray = [];
+axios.get('https://api.github.com/users/djones36/followers')
+  .then(data => {
+    followerData = data.data;
+    followerData.forEach(followerData=> {
+      followersArray.push(followerData.login)
+    })
+    followersArray.forEach(follower => {
+      axios.get(`https://api.github.com/users/${follower}`)
+      .them(data => {
+        console.log('Follower info: ', data.data);
+        const followerCard = document.querySelector('.cards');
+        followerCard.appendChild(grandCardCreator(data.data));
+      })
+    })
+  })
+
+
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -76,6 +93,7 @@ function grandCardCreator(element){
   //append child
   divParent.appendChild(img);
   divParent.appendChild(cardInfo);
+  cardInfo.appendChild(name);
   cardInfo.appendChild(userName);
   cardInfo.appendChild(location);
   cardInfo.appendChild(profile);
@@ -84,18 +102,18 @@ function grandCardCreator(element){
   cardInfo.appendChild(following);
   cardInfo.appendChild(bio);
   //textcontent
-  location.textContent = element.location;
+  location.textContent = `Location: ${element.location}`;
   name.textContent = element.name;
   img.src = element.avatar_url;
   userName.textContent = element.login;
   const profileLink = element.avatar_url;
-  profileAtag.innerHTML = profileLink.link(element.url);
+  profileAtag.innerHTML = `Profile Link: ${profileLink.link(element.url)}`;
   followers.textContent = `Followers: ${element.followers}`;
-  following.textContent = element.following;
-  bio.textContent = element.bio;
+  following.textContent = `Following: ${element.following}`;
+  bio.textContent = `Bio: ${element.bio}`;
 
   return divParent;
-}
+};
 
 /* List of LS Instructors Github username's: 
   tetondan
