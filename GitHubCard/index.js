@@ -36,17 +36,18 @@ axios.get('https://api.github.com/users/djones36')
 const followersArray = [];
 axios.get('https://api.github.com/users/djones36/followers')
   .then(data => {
-    followerData = data.data;
-    followerData.forEach(followerData=> {
-      followersArray.push(followerData.login)
+    const followerData = data.data;
+    followerData.forEach(followData => {
+      followersArray.push(followData.login)
     })
+
     followersArray.forEach(follower => {
       axios.get(`https://api.github.com/users/${follower}`)
-      .them(data => {
-        console.log('Follower info: ', data.data);
-        const followerCard = document.querySelector('.cards');
-        followerCard.appendChild(grandCardCreator(data.data));
-      })
+        .then(data => {
+          console.log('Follower info: ', data.data);
+          const followerCard = document.querySelector('.cards');
+          followerCard.appendChild(grandCardCreator(data.data));
+        })
     })
   })
 
