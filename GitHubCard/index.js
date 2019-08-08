@@ -54,7 +54,23 @@ const followersArray = [];
 </div>
 
 */
+let cards = document.querySelector('.cards')
 
+function grandCardCreator(){
+  //created classes
+  let card = document.createElement('div');
+  let img = document.createElement('img');
+  let cardInfo = document.createElement('div');
+  let name = document.createElement('h3');
+  let userName = document.createElement('p');
+  let location = document.createElement('p');
+  let profile = document.createElement('p');
+  let profileAtag = document.createElement('a');
+  let followers = document.createElement('p');
+  let locatifolowingon = document.createElement('p');
+  let bio = document.createElement('p');
+  //create 
+}
 /* List of LS Instructors Github username's: 
   tetondan
   dustinmyers
