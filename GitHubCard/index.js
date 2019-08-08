@@ -6,10 +6,10 @@
 https://api.github.com/users/djones36
 
 axios.get('https://api.github.com/users/djones36')
-  .then(data => {
-    console.log('User Info' ,data)
+  .then(user => {
+    console.log('User Info' ,user)
     const cards = document.querySelector('.cards')
-    cards.appendChild(grandCardCreator(data.data));
+    cards.appendChild(grandCardCreator(user.data));
   })
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
@@ -35,18 +35,18 @@ axios.get('https://api.github.com/users/djones36')
 
 const followersArray = [];
 axios.get('https://api.github.com/users/djones36/followers')
-  .then(data => {
-    const followerData = data.data;
+  .then(userdata => {
+    const followerData = userdata.data;
     followerData.forEach(followData => {
       followersArray.push(followData.login)
     })
 
     followersArray.forEach(follower => {
       axios.get(`https://api.github.com/users/${follower}`)
-        .then(data => {
-          console.log('Follower info: ', data.data);
+        .then(userData => {
+          console.log('Follower info: ', userData.data);
           const followerCard = document.querySelector('.cards');
-          followerCard.appendChild(grandCardCreator(data.data));
+          followerCard.appendChild(grandCardCreator(userData.data));
         })
     })
   })
