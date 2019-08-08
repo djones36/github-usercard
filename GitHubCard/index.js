@@ -6,10 +6,11 @@
 https://api.github.com/users/djones36
 
 axios.get('https://api.github.com/users/djones36')
-  .then(data => {
-    console.log('data ', data)
-    let myData = data.data;
+  .then(element => {
+    console.log('data ', element)
+    let myData = element.data;
     console.log('User Info' ,myData)
+    return myData;
   })
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
@@ -56,7 +57,7 @@ const followersArray = [];
 */
 let cards = document.querySelector('.cards')
 
-function grandCardCreator(){
+function grandCardCreator(element){
   //created classes
   let card = document.createElement('div');
   let img = document.createElement('img');
@@ -67,11 +68,38 @@ function grandCardCreator(){
   let profile = document.createElement('p');
   let profileAtag = document.createElement('a');
   let followers = document.createElement('p');
-  let locatifolowingon = document.createElement('p');
+  let following = document.createElement('p');
   let bio = document.createElement('p');
   //create class
-  card.classList('card')
+  card.classList('card');
+  cardInfo.classList('card-info');
+  name.classList.add('name');
+  userName.classList(userName);
+  //append child
+  card.appendChild(img);
+  card.appendChild(cardInfo);
+  cardInfo.appendChild(userName);
+  cardInfo.appendChild(location);
+  cardInfo.appendChild(profile);
+  cardInfo.appendChild(profileAtag);
+  cardInfo.appendChild(followers);
+  cardInfo.appendChild(following);
+  cardInfo.appendChild(bio);
+  //textcontent
+  location.textContent = element.location
+  name.textContent = element.name
+  img.src = element.avatar_url
+  userName.textContent = element.login
+  const profileLink = element.avatar_url
+  profileAtag.innerHTML = profileLink.link(element.url)
+  followers.textContent = element.followers
+  following.textContent = element.following
+  bio.textContent = element.bio
+
+  return card;
 }
+cards.appendChild(grandCardCreator(myData))
+
 /* List of LS Instructors Github username's: 
   tetondan
   dustinmyers
