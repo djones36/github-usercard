@@ -107,7 +107,7 @@ function grandCardCreator(element){
   name.textContent = element.name;
   img.src = element.avatar_url;
   userName.textContent = element.login;
-  const profileLink = element.avatar_url;
+  const profileLink = element.html_url;
   profileAtag.innerHTML = `Profile Link: ${profileLink.link(element.url)}`;
   followers.textContent = `Followers: ${element.followers}`;
   following.textContent = `Following: ${element.following}`;
